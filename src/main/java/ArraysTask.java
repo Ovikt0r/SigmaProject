@@ -42,7 +42,17 @@ public class ArraysTask {
                     maxNegativeNumber = array1[i];
                 }
             }
+
         }
+        for (int j = 0; j < array1.length; j++) {
+            if(array1[j] == maxPositiveNumber) {
+                copyArray2[j] = maxNegativeNumber;
+            }
+            if(array1[j] == maxNegativeNumber) {
+                copyArray2[j] = maxPositiveNumber;
+            }
+        }
+
         System.out.println("Amount of even elements : " + amount);
         System.out.println("Sum of pair elements : " + sum);
         System.out.println("Minimal negative number is " + minNegativeNumber);
@@ -51,6 +61,7 @@ public class ArraysTask {
         System.out.println("A new array with positive elements increased by one and negative elements decreased by one : \n" + Arrays.toString(copyArray1));
         System.out.println("Maximum negative number is " + maxPositiveNumber);
         System.out.println("Maximum positive number is " + maxNegativeNumber);
+        System.out.println("A new array with changed maximum and minimum : \n" + Arrays.toString(copyArray2));
 
 
     }
