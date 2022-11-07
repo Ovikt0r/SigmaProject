@@ -2,6 +2,7 @@ import java.util.Arrays;
 
 public class ArraysTask {
     public static void main(String[] args) {
+
         int[] array1 = new int[]{2, 4, -6, 12, -65, 66, 34, 86, -3, 54, 56, 44, -32, 23, 45, 98, 43, -42, 22, 11, -189};
         int amount = 0;
         int sum = 0;

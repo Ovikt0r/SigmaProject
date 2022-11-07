@@ -17,10 +17,11 @@ public class Main {
         System.out.println("x:");
         for (int i = 92000; i < 92999; i++) {
             if (i % rightNumber != 0) {
-                System.out.println("["+ (i % rightNumber) +"]");
+                System.out.println("[" + (i % rightNumber) + "]");
             }
         }
-    }}
+    }
+}
 //        final int RANGE = 200;
 //        final int DEVIDER = 49;
 //        for (int a = 0; a < RANGE; a++) {
