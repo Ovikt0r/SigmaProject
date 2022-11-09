@@ -117,12 +117,12 @@ public class ArraysTask {
         return copyArray2;
     }
 
-    public static int calculateArithmeticAverage() {
+    public static double calculateArithmeticAverage() {
         int sum = 0;
         for (int j : array1) {
             sum += j;
         }
-        return sum / array1.length;
+        return (double) sum / array1.length;
     }
 
     public static int findAmountOfElementsMoreThanAverage() {

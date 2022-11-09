@@ -1,16 +1,16 @@
 
 
 public class TaskForLoops {
+
     public static void main(String[] args) {
         //firstTask();
         //secondTask();
         //thirdTask();
         //fourthTask();
-        //fifthTask();
+        fifthTask();
     }
 
     public static void firstTask() {
-
         int coreNumber = 35;
         int divider = 15;
         System.out.println("Wrapped multiply digits : ");
@@ -22,15 +22,18 @@ public class TaskForLoops {
     }
 
     public static void secondTask() {
+        int n = 0;
         int rightNumber = 874;
         System.out.println(92 + "abc" + " = " + rightNumber + "*x");
-        System.out.println("x is :");
+        System.out.print("x is : ");
         for (int i = 92000; i < 92999; i++) {
-            if (i % rightNumber != 0) {
-                System.out.println("[" + (i % rightNumber) + "]");
+            if(i%rightNumber==0) {
+                n = i / rightNumber;
+                System.out.println("[" + n + "]");
             }
+            }
+
         }
-    }
 
     public static void thirdTask() {
         int limit = 200;
@@ -64,7 +67,7 @@ public class TaskForLoops {
         for (int a = 1; a < 10; a++) {
             for (int b = 0; b < 10; b++) {
                 for (int c = 1; c < 10; c++) {
-                    if (c != a) {
+                    if (a != c) {
                         count++;
                     }
                 }
