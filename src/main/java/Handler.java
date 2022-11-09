@@ -10,14 +10,22 @@ public class Handler {
     static final List<Integer> rangeAverageNumbers = new ArrayList<>();
 
     public static void main(String[] args) {
-        final int[] array1 = new int[]{2, 4, -6, 12, -65, 66, 34, 86, -3, 54, 56, 44, -32, 23, 45, 98, 43, -42, 22, 11, -189};
-        final int[] array2 = new int[]{-10, 300, 250, -990, 40, -60, 780, -300, 660, 580, -150, 7, -100, 450, 220, -30, -174, 88, 100, 140, 40};
+        final int[] array1 = new int[]{2, -189, 4, -6, 12, 98, -65, 66, 34, -189, 86, 98, -3, 54, 56, 98, 44, -32, 23, 45, 98, 43, -42, -189, 22, 11, -189};
+        final int[] array2 = new int[]{-10, 300, 780, 250, -990, 40, -60, 780, -300, 660, 580, -150, 7, -100, 450, 220, -30, -174, 88, 100, 140, 40, -990};
         makeTwoCollections(array1);
         System.out.println(positiveNumbers);
         System.out.println(negativeNumbers);
         System.out.println(calculateArithmeticAverage(array1));
         System.out.println(calculateArithmeticAverage(array2));
         System.out.println(createSpecialCollection(array1, array2));
+        System.out.println(findMaxValue(array1));
+        System.out.println(findMinValue(array1));
+        System.out.println(Arrays.toString(eliminateDuplicateMaxAndMin(array1)));
+        System.out.println(Arrays.toString(eliminateFirstDuplicateMaxAndMin(array1)));
+        System.out.println(findMaxValue(array2));
+        System.out.println(findMinValue(array2));
+        System.out.println(Arrays.toString(eliminateDuplicateMaxAndMin(array2)));
+        System.out.println(Arrays.toString(eliminateFirstDuplicateMaxAndMin(array2)));
 
     }
 
@@ -39,13 +47,71 @@ public class Handler {
         int[] mergeArray = new int[array1.length + array2.length];
         System.arraycopy(array1, 0, mergeArray, 0, array1.length);
         System.arraycopy(array2, 0, mergeArray, array1.length, array2.length);
-        Arrays.sort(mergeArray);
+        //Arrays.sort(mergeArray);
         for (Integer element : mergeArray) {
             if (element < average1 && element > average2 || element > average1 && element < average2) {
                 integerList.add(element);
             }
         }
         return integerList;
+    }
+
+    public static int[] eliminateDuplicateMaxAndMin(int[] array) {
+        int max = findMaxValue(array);
+        int min = findMinValue(array);
+        int counter = 0;
+        for (int element : array) {
+            if (element == max || element == min) {
+                counter++;
+            }
+        }
+        int[] withoutDuplicateArray = new int[array.length - counter + 2];
+        int index = 0;
+        boolean flagMax = true;
+        boolean flagMin = true;
+        for (int element : array) {
+            if (flagMax && element == max) {
+                withoutDuplicateArray[index++] = element;
+                flagMax = false;
+            }
+            if (flagMin && element == min) {
+                withoutDuplicateArray[index++] = element;
+                flagMin = false;
+            }
+            if (element != max && element != min) {
+                withoutDuplicateArray[index++] = element;
+            }
+        }
+        return withoutDuplicateArray;
+    }
+
+    public static int[] eliminateFirstDuplicateMaxAndMin(int[] array) {
+        int max = findMaxValue(array);
+        int min = findMinValue(array);
+        int maxCounter = calculateHowManyMaximumElements(array);
+        int minCounter = calculateHowManyMinimumElements(array);
+        int counter = maxCounter + minCounter;
+        int[] withoutDuplicateArray = new int[array.length - counter + 2];
+        int resultIndex = 0;
+        for (int element : array) {
+            if (element != max && element != min) {
+                withoutDuplicateArray[resultIndex++] = element;
+            }
+            if (maxCounter > 0 && element == max) {
+                maxCounter--;
+            }
+            if (minCounter > 0 && element == min) {
+                minCounter--;
+            }
+            if (maxCounter == -1 && element == max) {
+                withoutDuplicateArray[resultIndex++] = element;
+            }
+            if (minCounter == -1 && element == min) {
+                withoutDuplicateArray[resultIndex++] = element;
+            }
+
+        }
+        return withoutDuplicateArray;
     }
 
     public static double calculateArithmeticAverage(int[] array) {
@@ -55,6 +121,7 @@ public class Handler {
         }
         return (double) sum / array.length;
     }
+
 
     public static int findMaxValue(int[] array) {
         int maximum = -1;
@@ -74,5 +141,27 @@ public class Handler {
             }
         }
         return minimum;
+    }
+
+    public static int calculateHowManyMaximumElements(int[] array) {
+        int max = findMaxValue(array);
+        int counter = 0;
+        for (int element : array) {
+            if (element == max) {
+                counter++;
+            }
+        }
+        return counter;
+    }
+
+    public static int calculateHowManyMinimumElements(int[] array) {
+        int min = findMinValue(array);
+        int counter = 0;
+        for (int element : array) {
+            if (element == min) {
+                counter++;
+            }
+        }
+        return counter;
     }
 }
