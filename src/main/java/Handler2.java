@@ -88,4 +88,15 @@ public class Handler2 {
             }
         }
     }
+
+    public static int calculateMaxWorldLength(String s){
+       int max = 0;
+       String[] array = s.split("\\s");
+       for (String string :array) {
+           if(string.length()>max){
+               max = string.length();
+           }
+       }
+       return max;
+    }
 }
