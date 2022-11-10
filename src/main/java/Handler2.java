@@ -7,13 +7,15 @@ public class Handler2 {
         System.out.println(everyFistLetterToUpperCase(s));
         System.out.println("******************************");
         System.out.println(replaceSubstring(s, 4));
+        System.out.println(insertWord(s, "ope", "fuckYou"));
     }
+
     public static String everyFistLetterToUpperCase(String s) {
 
-        String [] array = s.split("(\\s)");
+        String[] array = s.split("(\\s)");
         StringBuilder sb = new StringBuilder();
-        for (String string: array) {
-            String firstLetter = string.substring(0,1);
+        for (String string : array) {
+            String firstLetter = string.substring(0, 1);
             String after = string.substring(1);
             sb.append(firstLetter.toUpperCase()).append(after).append(" ");
         }
@@ -23,15 +25,33 @@ public class Handler2 {
 
     public static String replaceSubstring(String inputString, int specifiedLength) {
 
-        String [] array = inputString.split("(\\s)");
+        String[] array = inputString.split("(\\s)");
         StringBuilder sb = new StringBuilder();
-        String subString = inputString.substring(8,12);
-        for (String string: array) {
-            if(string.length()!=specifiedLength) {
+        String subString = inputString.substring(8, 12);
+        for (String string : array) {
+            if (string.length() != specifiedLength) {
+                sb.append(string).append(" ");
+            } else {
+                sb.append(subString).append(" ");
+            }
+        }
+        return sb.toString();
+
+    }
+
+    public static String insertWord(String inputText, String substring, String specifiedWord) {
+
+        String[] array = inputText.split("\\s");
+        StringBuilder sb = new StringBuilder();
+        for (String string : array) {
+            if (string.endsWith(substring)) {
+                sb.append(string).append(" ");
+                sb.append(specifiedWord).append(" ");
+            } else {
                 sb.append(string).append(" ");
             }
-            else {sb.append(subString).append(" ");}
         }
+
         return sb.toString();
 
     }
